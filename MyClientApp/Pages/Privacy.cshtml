@@ -1,0 +1,19 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+<script>
+    // Check if token exists in localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("AuthToken");
+        if (token) {
+            // Redirect to posts page if token exists
+            window.location.href = '/posts';
+        }
+    });
+</script>

@@ -1,0 +1,59 @@
+﻿@page
+@model MyApp.Namespace.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form method="post" id="loginForm" novalidate>
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" id="Username" name="Username" class="form-control" required minlength="3" maxlength="50" pattern="^[a-zA-Z0-9_.-]+$"  title="Username must be between 3-50 characters and can only contain letters, numbers, and _ . -" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+        @if (Model.ErrorMessage?.Contains("username", System.StringComparison.OrdinalIgnoreCase) == true)
+        {
+            <span class="text-danger">@Model.ErrorMessage</span>
+        }
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" id="Password" name="Password" class="form-control" required minlength="8" title="Password must be at least 8 characters long." />
+        <span asp-validation-for="Password" class="text-danger"></span>
+        @if (Model.ErrorMessage?.Contains("password", System.StringComparison.OrdinalIgnoreCase) == true)
+        {
+            <span class="text-danger">@Model.ErrorMessage</span>
+        }
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger mt-3">
+        @Model.ErrorMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Token))
+{
+    <script>
+        // Store the token in LocalStorage
+        const token = '@Model.Token';
+        localStorage.setItem('AuthToken', token);
+
+        // Redirect to the posts page
+        window.location.href = '/posts';
+    </script>
+}
+
+<script>
+    // Check if token exists in localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("AuthToken");
+        if (token) {
+            // Redirect to posts page if token exists
+            window.location.href = '/posts';
+        }
+    });
+</script>

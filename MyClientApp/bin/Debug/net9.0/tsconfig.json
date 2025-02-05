@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "target": "es6",                // Transpile to ES6 JavaScript
+      "module": "commonjs",           // Module system
+      "outDir": "./wwwroot/js",       // Output directory for .js files
+      "rootDir": "./wwwroot/ts",      // Root directory for .ts files
+      "strict": true,                 // Enable strict type-checking
+      "esModuleInterop": true         // Enable ES module compatibility
+    },
+    "include": ["wwwroot/ts/**/*.ts"], // Include all .ts files
+    "exclude": ["node_modules"]       // Exclude the node_modules folder
+}

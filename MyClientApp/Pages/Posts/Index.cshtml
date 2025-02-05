@@ -1,0 +1,31 @@
+﻿@page
+@model MyApp.Namespace.IndexModel
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<h2>Posts</h2>
+
+<div id="error-message" class="alert alert-danger" style="display: none;"></div>
+
+<div class="d-flex justify-content-between">
+    <a href="/posts/create" class="btn btn-md btn-success">Create</a>
+    <button id="sign-out-btn" class="btn btn-md btn-secondary">Sign Out</button>
+</div>
+
+<table class="table" id="posts-table" style="display: none;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>UserId</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="posts-body">
+        <!-- Posts will be dynamically inserted here -->
+    </tbody>
+</table>
+
+<script src="/js/posts/index.js"></script>
+
